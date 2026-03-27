@@ -75,11 +75,11 @@ pip install earthengine-api pandas numpy openpyxl
 earthengine authenticate
 
 # 3. Run in Google Colab or a local environment
-#    Update the project ID (currently "ee-felixoluoch") to your own GEE project
+#    Update the project ID (currently "ee-felixxxxx") to your own GEE project
 python analysis/climate_hvi_kenya.py
 ```
 
-> **Note:** Replace `ee-felixoluoch` with your own Google Earth Engine project ID before running.
+> **Note:** Replace `ee-felixxxxxx` with your own Google Earth Engine project ID before running.
 
 ---
 
