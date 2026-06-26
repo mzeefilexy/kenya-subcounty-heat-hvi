@@ -1,0 +1,34 @@
+{
+  "cff-version": "1.2.0",
+  "message": "If you use this software, please cite it as below.",
+  "title": "Kenya heat-exposure screening reproducibility package",
+  "version": "1.0.0",
+  "date-released": "2026-06-23",
+  "license": "MIT",
+  "authors": [
+    {
+      "given-names": "Felix",
+      "family-names": "Oluoch"
+    },
+    {
+      "given-names": "Fredrick",
+      "family-names": "Gudda"
+    },
+    {
+      "given-names": "Prissy",
+      "family-names": "Makena"
+    },
+    {
+      "given-names": "Anthony",
+      "family-names": "Ngugi"
+    },
+    {
+      "given-names": "Jai K",
+      "family-names": "Das"
+    },
+    {
+      "given-names": "Zulfiqar Ahmed",
+      "family-names": "Bhutta"
+    }
+  ]
+}

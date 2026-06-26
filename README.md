@@ -1,118 +1,35 @@
-# kenya-subcounty-heat-hvi
-# Thirty-Five Years of Accelerating Heat Stress in Kenya
+# Kenya heat-exposure screening reproducibility package
 
-**Subnational Hazard, Exposure Burden, and Vulnerability in Priority Populations**
+This release supports the manuscript *Where severe heat and priority-population burden coincide in Kenya: a biometeorological subcounty screening analysis, 2015-2025*.
 
-Felix Oluoch¹² · Fredrick Gudda¹²
+The archived Zenodo record for this study is: https://zenodo.org/records/19202174
 
-¹ Department of Population Health, Aga Khan University, Nairobi, Kenya  
-² Institute for Global Health and Development, Aga Khan University, East Africa
+## What is included
 
----
+- Final revised manuscript and STROBE checklist.
+- Reproducible analysis scripts, without personal paths or credentials.
+- Publication figures, main tables, supplementary results, reference-reconciliation register, software requirements, and Zenodo metadata.
 
-## Overview
+## What is deliberately not included
 
-This repository contains the analysis code supporting the manuscript:
+No Copernicus/ERA5, WorldPop, Relative Wealth Index, or administrative-boundary source files are redistributed. These are third-party inputs and must be obtained under their original terms. No API keys, browser data, or personal files are included.
 
-> *Thirty-Five Years of Accelerating Heat Stress in Kenya: Subnational Hazard, Exposure Burden, And Vulnerability in Priority Populations*
+## Data inputs required
 
-We conducted a nationwide ecological panel study characterising heat hazard, exposure burden, and heat vulnerability across all 290 sub-counties of Kenya, focusing on **pregnant women**, **children under five**, and **adults aged 60 and older** (2015–2025), with extended climatological context from 1991 to 2025.
+Set `HVI_DATA_DIR` to a folder containing `kenya_adm2_boundaries.geojson`, `kenya_subcounty_population_and_events_2015-2030.csv`, and `UTCI_files/UTCI_daily_stats_*_degC.nc`. Download ERA5 hourly 2-m temperature and dew-point temperature through the Copernicus Climate Data Store for the Heat Index comparator. The scripts expect the ERA5 files under `data/era5_sensitivity/`.
 
----
+## Reproduction order
 
-## Key Findings
+1. Create an environment: `pip install -r requirements.txt`.
+2. Export `HVI_DATA_DIR=/path/to/authorised/input-data`.
+3. Run `python scripts/run_resubmission_analyses.py` for UTCI trends, FDR, Moran's I, denominator scenarios, tables, and map.
+4. Run `python scripts/download_era5_heatindex_2025.py`, then `python scripts/calculate_heat_index_2025.py` for the 2025 Heat Index comparator.
+5. Run `python scripts/audit_references_crossref.py` and `python scripts/reconcile_references.py` for the reference register.
 
-- National population-weighted mean days exceeding 38°C (H38) increased significantly from 1991–2025 (Sen slope 0.97 days/year; *p* < 0.001), with record levels in 2024 and 2025.
-- 61 sub-counties with sustained heat (≥30 days/year) account for ~96% of annual heat exposure burden across all priority groups.
-- Heat exposure is **inversely associated with relative wealth** (Spearman ρ = −0.561; *p* < 0.001).
-- Heat Vulnerability Index (HVI) rankings are highly concordant for pregnant women and children under five (ρ = 0.977), with older adults showing additional priority in coastal transitional sub-counties.
+## Interpretation
 
----
+Outputs are ecological, subcounty-level screening priorities. They are not causal effects, individual risk predictions, or observed pregnancy counts. The Heat Index analysis is a 2025 cross-metric robustness test and does not replace the 1991-2025 UTCI trend analysis.
 
-## Repository Structure
+## Licences
 
-```
-climate-hvi-kenya/
-├── README.md
-├── LICENSE
-├── .gitignore
-├── requirements.txt
-└── analysis/
-    └── climate_hvi_kenya.py   # Main Google Earth Engine analysis script
-```
-
----
-
-## Data Sources
-
-| Dataset | Description | Source |
-|---|---|---|
-| ERA5-HEAT (Copernicus) | Universal Thermal Climate Index (UTCI); H38 & H46 metrics | Copernicus Climate Data Store |
-| WorldPop Age-Sex | Gridded population by age/sex, 100m resolution, 2015–2030 | `projects/sat-io/open-datasets/WORLDPOP/agesex` |
-| geoBoundaries ADM0/1/2 | Kenya administrative boundaries (sub-county level) | `WM/geoLab/geoBoundaries/600` |
-| Relative Wealth Index | Socioeconomic vulnerability proxy | Meta / Data for Good |
-
----
-
-## Analysis Script
-
-The script [`analysis/climate_hvi_kenya.py`](analysis/climate_hvi_kenya.py) was developed in Google Colab using the **Google Earth Engine Python API** and covers:
-
-- Extraction of age-stratified population denominators (elderly 60+, children 0–4, infants, women of reproductive age) per sub-county per year
-- Calibration of estimated annual births and pregnancies using national anchor-year data
-- Computation of sub-county WRA shares and interpolated calibration factors (κ and r)
-- Export of zonal statistics as CSV and administrative boundaries as GeoJSON
-
-### Running the Script
-
-The script requires a Google Earth Engine account. To run:
-
-```bash
-# 1. Install dependencies
-pip install earthengine-api pandas numpy openpyxl
-
-# 2. Authenticate with Earth Engine
-earthengine authenticate
-
-# 3. Run in Google Colab or a local environment
-#    Update the project ID (currently "ee-felixxxxx") to your own GEE project
-python analysis/climate_hvi_kenya.py
-```
-
-> **Note:** Replace `ee-felixxxxxx` with your own Google Earth Engine project ID before running.
-
----
-
-## Outputs
-
-The script generates the following CSV files:
-
-| File | Description |
-|---|---|
-| `kenya_adm2_60plus_population_2015-2030.csv` | Total/female/male 60+ population per sub-county per year |
-| `kenya_adm2_0_4_population_2015-2030.csv` | Total/female/male 0–4 population per sub-county per year |
-| `kenya_adm2_infants_2015-2030.csv` | Infant (0–12 months) population per sub-county per year |
-| `kenya_adm2_wra_2015-2030.csv` | Women of reproductive age (15–49) per sub-county per year |
-| `kenya_subcounty_population_and_events_2015-2030.csv` | Combined: infants, WRA, estimated births & pregnancies |
-| `kenya_adm2_boundaries_indexed.geojson` | ADM2 boundaries with `object_id` property |
-
----
-
-## Citation
-
-*Manuscript under review. Citation details will be updated upon publication.*
-
----
-
-## Contact
-
-**Dr Felix Oluoch**, PhD, MPH  
-Department of Population Health, Aga Khan University, Nairobi, Kenya  
-Institute for Global Health and Development, Aga Khan University, East Africa  
-📧 oluoch.felix@aku.edu
-
----
-
-## License
-
-This project is licensed under the MIT License — see [LICENSE](LICENSE) for details.
+Code is MIT licensed. Documentation, derived tables, figures, and supplementary outputs are CC BY 4.0. Third-party source data retain their original licences.

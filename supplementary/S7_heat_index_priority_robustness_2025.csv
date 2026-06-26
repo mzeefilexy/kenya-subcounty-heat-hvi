@@ -1,0 +1,4 @@
+group,year,heat_index_exposed_subcounties,rank_correlation_with_utci_priority,top20_overlap_with_utci_priority
+age60plus,2025,111,0.8207599004090192,15
+pregnancies,2025,111,0.8296621383354613,18
+u5,2025,111,0.8222035065592531,18

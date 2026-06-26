@@ -1,0 +1,4 @@
+.env
+.pydeps/
+data/era5_sensitivity/*.nc
+__pycache__/

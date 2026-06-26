@@ -1,0 +1,36 @@
+{
+  "title": "Kenya heat-exposure screening reproducibility package",
+  "version": "1.0.0",
+  "upload_type": "software",
+  "description": "Code and derived outputs supporting a Kenya subcounty biometeorological severe-heat screening analysis.",
+  "creators": [
+    {
+      "name": "Oluoch, Felix"
+    },
+    {
+      "name": "Gudda, Fredrick"
+    },
+    {
+      "name": "Makena, Prissy"
+    },
+    {
+      "name": "Ngugi, Anthony"
+    },
+    {
+      "name": "Das, Jai K"
+    },
+    {
+      "name": "Bhutta, Zulfiqar Ahmed"
+    }
+  ],
+  "keywords": [
+    "heat exposure",
+    "UTCI",
+    "Kenya",
+    "biometeorology",
+    "ERA5",
+    "reproducibility"
+  ],
+  "access_right": "open",
+  "license": "MIT"
+}

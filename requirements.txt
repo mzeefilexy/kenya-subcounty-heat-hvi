@@ -1,4 +1,7 @@
-earthengine-api>=0.1.370
-pandas>=1.5.0
-numpy>=1.23.0
-openpyxl>=3.1.0
+numpy
+pandas
+netCDF4
+shapely
+matplotlib
+python-docx
+cdsapi
