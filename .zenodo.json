@@ -1,6 +1,6 @@
 {
   "title": "Kenya heat-exposure screening reproducibility package",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "upload_type": "software",
   "description": "Code and derived outputs supporting a Kenya subcounty biometeorological severe-heat screening analysis.",
   "creators": [
